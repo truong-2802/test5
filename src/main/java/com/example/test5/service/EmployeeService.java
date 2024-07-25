@@ -41,8 +41,15 @@ public class EmployeeService {
         return 100000.0; // Example value
     }
 
-    public Page<Employee> searchEmployee(String keyword, int pageNo, int pageSize, String sortField, String sortDir) {
+    public Page<Employee> searchEmployee(String keyword, int pageNo, int pageSize, String sortField, String sortDir, Double minSalary, Double maxSalary) {
         PageRequest pageable = PageRequest.of(pageNo - 1, pageSize, Sort.by(Sort.Direction.fromString(sortDir), sortField));
-        return employeeRepository.findAll(pageable); // Implement search logic if needed
+        return employeeRepository.findByFullNameContainingIgnoreCase(keyword, pageable);
     }
+
+    public Page<Employee> filterEmployees(Integer minAge, Integer maxAge, Double minSalary, Double maxSalary, int pageNo, int pageSize, String sortField, String sortDir) {
+        PageRequest pageable = PageRequest.of(pageNo - 1, pageSize, Sort.by(Sort.Direction.fromString(sortDir), sortField));
+        return employeeRepository.findByAgeBetweenAndBasicSalaryBetween(minAge != null ? minAge : 0, maxAge != null ? maxAge : Integer.MAX_VALUE, minSalary != null ? minSalary : 0.0, maxSalary != null ? maxSalary : Double.MAX_VALUE, pageable);
+    }
+
+
 }

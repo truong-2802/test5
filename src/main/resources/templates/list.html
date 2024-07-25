@@ -3,159 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <title>Employee List</title>
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
+    <style>
 
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 2.5em;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        form input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 300px;
+            margin-right: 10px;
+        }
+
+        form button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table tbody tr:hover {
+            background-color: #e6e6e6;
+        }
+
+        table a {
+            color: #d7dde3;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        table a:hover {
+            text-decoration: underline;
+        }
+
+        .edit-link {
+            color: #28a745; /* Xanh lá cho Edit */
+        }
+
+        .edit-link:hover {
+            color: #1e7e34;
+        }
+
+        .delete-link {
+            color: #dc3545; /* Đỏ cho Delete */
+        }
+
+        .delete-link:hover {
+            color: #c82333;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .pagination span {
+            font-size: 1em;
+        }
+
+        .pagination a {
+            color: #007bff;
+            text-decoration: none;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .pagination a:hover {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+
+
+
+
+
+    </style>
 </head>
-<style>
-    /* Basic Reset */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
 
-    body {
-        font-family: 'Arial', sans-serif;
-        line-height: 1.6;
-        background-color: #f9f9f9;
-        color: #333;
-        padding: 20px;
-    }
-
-    h1 {
-        margin-bottom: 20px;
-        color: #333;
-        font-size: 2.5em;
-    }
-
-    a {
-        color: #007bff;
-        text-decoration: none;
-    }
-
-    a:hover {
-        text-decoration: underline;
-    }
-
-    form {
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-    }
-
-    form input[type="text"] {
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        width: 300px;
-        margin-right: 10px;
-    }
-
-    form button {
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 1em;
-        transition: background-color 0.3s ease;
-    }
-
-    form button:hover {
-        background-color: #0056b3;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        background-color: #fff;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    table th, table td {
-        padding: 12px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    table th {
-        background-color: #007bff;
-        color: #fff;
-        font-weight: bold;
-    }
-
-    table tbody tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
-    table tbody tr:hover {
-        background-color: #e6e6e6;
-    }
-
-    table a {
-        color: #d7dde3;
-        text-decoration: none;
-        font-size: 0.9em;
-    }
-
-    table a:hover {
-        text-decoration: underline;
-    }
-
-    .edit-link {
-        color: #28a745; /* Xanh lá cho Edit */
-    }
-
-    .edit-link:hover {
-        color: #1e7e34;
-    }
-
-    .delete-link {
-        color: #dc3545; /* Đỏ cho Delete */
-    }
-
-    .delete-link:hover {
-        color: #c82333;
-    }
-
-    .pagination {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 20px;
-    }
-
-    .pagination span {
-        font-size: 1em;
-    }
-
-    .pagination a {
-        color: #007bff;
-        text-decoration: none;
-        padding: 8px 12px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        transition: background-color 0.3s ease, border-color 0.3s ease;
-    }
-
-    .pagination a:hover {
-        background-color: #007bff;
-        color: #fff;
-        border-color: #007bff;
-    }
-
-
-</style>
 <body>
 <!-- Sử dụng cú pháp đầy đủ cho fragment -->
 <div>
-    <form method="get" th:action="@{/employees/search}" class="d-flex">
-        <input type="text" class="form-control" name="keyword" placeholder="Search Employee by Name ...">
+    <form method="get"  class="d-flex">
+        <input type="text" class="form-control" name="keyword"  placeholder="Search Employee by Name ...">
+<!--        <input type="text" name="keyword" value="${keyword}" placeholder="Search by name"/>-->
         <button class="btn btn-sm btn-primary ms-2" type="submit">Search</button>
     </form>
+
+
+
     <div class="col">
         <div class="d-flex justify-content-end">
+            <form action="/employees/filter" method="get" style="max-width: 400px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: flex; flex-wrap: wrap; gap: 10px;">
+                <input type="number" name="minSalary" value="${minSalary}" placeholder="Min Salary" style="flex: 1 1 calc(50% - 20px); border-radius: 4px; border: 1px solid #ccc; padding: 10px;"/>
+                <input type="number" name="maxSalary" value="${maxSalary}" placeholder="Max Salary" style="flex: 1 1 calc(50% - 20px); border-radius: 4px; border: 1px solid #ccc; padding: 10px;"/>
+                <input type="number" name="minAge" value="${minAge}" placeholder="Min Age" style="flex: 1 1 calc(50% - 20px); border-radius: 4px; border: 1px solid #ccc; padding: 10px;"/>
+                <input type="number" name="maxAge" value="${maxAge}" placeholder="Max Age" style="flex: 1 1 calc(50% - 20px); border-radius: 4px; border: 1px solid #ccc; padding: 10px;"/>
+                <button type="submit" style="flex: 1 1 100%; background-color: #007bff; color: white; border: none; border-radius: 4px; padding: 10px; cursor: pointer; font-size: 16px; margin-top: 10px;">Filter</button>
+            </form>
+
             <button class="btn btn-sm mx-2 btn-inverse-danger btn-icon-text"
                     type="button"
                     data-bs-toggle="offcanvas"
@@ -168,42 +185,90 @@
                     onclick="showFilter(this)"
                     th:if="${#strings.isEmpty(keyword)}"
             >
-                Filter <i class="bi bi-funnel"></i>
             </button>
-            <a style="text-decoration: none; cursor: pointer" class="btn btn-sm btn-icon-text btn-success" href="/employees/create">Add new employee <i class="bi bi-plus-circle"></i></a>
         </div>
+        <a style="display: inline-flex; align-items: center; text-decoration: none; cursor: pointer; color: #fff; background-color: #28a745; border: 1px solid #28a745; border-radius: 4px; padding: 5px 10px; font-size: 16px; font-weight: 500; transition: background-color 0.3s, border-color 0.3s;" href="/employees/create">
+            Add new employee
+        </a>
     </div>
 </div>
 
-    <table>
-        <thead>
-        <tr>
-            <th><a th:href="@{/employees/list(pageNo=${currentPage}, pageSize=${pageSize}, sortField='id', sortDir=${sortDir})}">ID</a></th>
-            <th><a th:href="@{/employees/list(pageNo=${currentPage}, pageSize=${pageSize}, sortField='fullName', sortDir=${reverseSortDir})}">Full Name</a></th>
-            <th><a th:href="@{/employees/list(pageNo=${currentPage}, pageSize=${pageSize}, sortField='age', sortDir=${reverseSortDir})}">Age</a></th>
-            <th><a th:href="@{/employees/list(pageNo=${currentPage}, pageSize=${pageSize}, sortField='basicSalary', sortDir=${reverseSortDir})}">Salary</a></th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="employee : ${employees}">
-            <td th:text="${employee.id}"></td>
-            <td th:text="${employee.fullName}"></td>
-            <td th:text="${employee.age}"></td>
-            <td th:text="${employee.basicSalary}"></td>
-            <td>
-                <a style="color: #a78e28;" th:href="@{/employees/update(id=${employee.id})}">Edit</a>
-                <a style="color: #dc3545" th:href="@{/employees/delete(id=${employee.id})}" onclick="return confirm('Are you sure?')">Delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<table>
+    <thead>
+    <tr>
+        <th><a th:href="@{/employees/list(pageNo=${currentPage}, pageSize=${pageSize}, sortField='id', sortDir=${sortDir})}">ID</a></th>
+        <th><a th:href="@{/employees/list(pageNo=${currentPage}, pageSize=${pageSize}, sortField='fullName', sortDir=${reverseSortDir})}">Full Name</a></th>
+        <th><a th:href="@{/employees/list(pageNo=${currentPage}, pageSize=${pageSize}, sortField='age', sortDir=${reverseSortDir})}">Age</a></th>
+        <th><a th:href="@{/employees/list(pageNo=${currentPage}, pageSize=${pageSize}, sortField='basicSalary', sortDir=${reverseSortDir})}">Salary</a></th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.id}"></td>
+        <td th:text="${employee.fullName}"></td>
+        <td th:text="${employee.age}"></td>
+        <td th:text="${employee.basicSalary}"></td>
+        <td>
+            <a href="#" style="display: inline-block; color: #fff; background-color: #a78e28; border: 1px solid #a78e28; border-radius: 4px; padding: 4px 5px; text-decoration: none; font-size: 16px; text-align: center; cursor: pointer; margin-right: 0;" th:href="@{/employees/update(id=${employee.id})}">Edit</a>
+            <a href="#" style="display: inline-block; color: #fff; background-color: #dc3545; border: 1px solid #dc3545; border-radius: 4px; padding: 4px 5px; text-decoration: none; font-size: 16px; text-align: center; cursor: pointer;" th:href="@{/employees/delete(id=${employee.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
-    <div>
-        <span>Page: <span th:text="${currentPage}"></span> of <span th:text="${totalPages}"></span></span>
-        <a th:href="@{/employees/list(pageNo=${currentPage - 1}, pageSize=${pageSize}, sortField=${sortField}, sortDir=${sortDir})}" th:if="${currentPage > 1}">Previous</a>
-        <a th:href="@{/employees/list(pageNo=${currentPage + 1}, pageSize=${pageSize}, sortField=${sortField}, sortDir=${sortDir})}" th:if="${currentPage < totalPages}">Next</a>
-    </div>
+<div>
+    <span>Page: <span th:text="${currentPage}"></span> of <span th:text="${totalPages}"></span></span>
+    <a th:href="@{/employees/list(pageNo=${currentPage - 1}, pageSize=${pageSize}, sortField=${sortField}, sortDir=${sortDir})}" th:if="${currentPage > 1}">Previous</a>
+    <a th:href="@{/employees/list(pageNo=${currentPage + 1}, pageSize=${pageSize}, sortField=${sortField}, sortDir=${sortDir})}" th:if="${currentPage < totalPages}">Next</a>
+</div>
 </div>
 </body>
+
+
+
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Employee List</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Employee List</h1>-->
+
+<!--<form action="#" method="get">-->
+<!--    <input type="text" name="keyword" value="${keyword}" placeholder="Search by name"/>-->
+<!--    <button type="submit">Search</button>-->
+<!--</form>-->
+
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th><a href="?sortField=id&sortDir=${reverseSortDir}">ID</a></th>-->
+<!--        <th><a href="?sortField=fullName&sortDir=${reverseSortDir}">Full Name</a></th>-->
+<!--        <th><a href="?sortField=basicSalary&sortDir=${reverseSortDir}">Salary</a></th>-->
+<!--        <th>Actions</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="employee : ${employees}">-->
+<!--        <td th:text="${employee.id}"></td>-->
+<!--        <td th:text="${employee.fullName}"></td>-->
+<!--        <td th:text="${employee.basicSalary}"></td>-->
+<!--        <td>-->
+<!--            <a th:href="@{/employees/update(id=${employee.id})}">Edit</a>-->
+<!--            <a th:href="@{/employees/delete(id=${employee.id})}" onclick="return confirm('Are you sure?');">Delete</a>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
+
+<!--<div>-->
+<!--    <a th:href="@{/employees/list(pageNo=${currentPage - 1}, pageSize=${pageSize}, sortField=${sortField}, sortDir=${sortDir}, keyword=${keyword}, minSalary=${minSalary}, maxSalary=${maxSalary})}" th:if="${currentPage > 1}">Previous</a>-->
+<!--    <a th:href="@{/employees/list(pageNo=${currentPage + 1}, pageSize=${pageSize}, sortField=${sortField}, sortDir=${sortDir}, keyword=${keyword}, minSalary=${minSalary}, maxSalary=${maxSalary})}" th:if="${currentPage < totalPages}">Next</a>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+

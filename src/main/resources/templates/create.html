@@ -3,25 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <title>Create New Employee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        div.form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 16px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-<div >
+<div class="container">
     <h1>Create New Employee</h1>
     <form action="#" th:action="@{/employees/create}" th:object="${employee}" method="post">
-        <div>
+        <div class="form-group">
             <label for="fullName">Full Name:</label>
             <input type="text" id="fullName" th:field="*{fullName}" placeholder="Full Name"/>
-            <div th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" style="color: red;"></div>
+            <div th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="error"></div>
         </div>
-        <div>
+        <div class="form-group">
             <label for="age">Age:</label>
             <input type="text" id="age" th:field="*{age}" placeholder="Age"/>
-            <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" style="color: red;"></div>
+            <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="error"></div>
         </div>
-        <div>
+        <div class="form-group">
             <label for="basicSalary">Basic Salary:</label>
             <input type="text" id="basicSalary" th:field="*{basicSalary}" placeholder="Basic Salary"/>
-            <div th:if="${#fields.hasErrors('basicSalary')}" th:errors="*{basicSalary}" style="color: red;"></div>
+            <div th:if="${#fields.hasErrors('basicSalary')}" th:errors="*{basicSalary}" class="error"></div>
         </div>
         <button type="submit">Submit</button>
         <a href="/employees/list">Cancel</a>
