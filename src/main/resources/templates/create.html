@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Employee</title>
+</head>
+<body>
+<div >
+    <h1>Create New Employee</h1>
+    <form action="#" th:action="@{/employees/create}" th:object="${employee}" method="post">
+        <div>
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" th:field="*{fullName}" placeholder="Full Name"/>
+            <div th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" style="color: red;"></div>
+        </div>
+        <div>
+            <label for="age">Age:</label>
+            <input type="text" id="age" th:field="*{age}" placeholder="Age"/>
+            <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" style="color: red;"></div>
+        </div>
+        <div>
+            <label for="basicSalary">Basic Salary:</label>
+            <input type="text" id="basicSalary" th:field="*{basicSalary}" placeholder="Basic Salary"/>
+            <div th:if="${#fields.hasErrors('basicSalary')}" th:errors="*{basicSalary}" style="color: red;"></div>
+        </div>
+        <button type="submit">Submit</button>
+        <a href="/employees/list">Cancel</a>
+    </form>
+</div>
+</body>
+</html>
